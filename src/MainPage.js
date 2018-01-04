@@ -2,7 +2,7 @@ import React from 'react'
 import Artyom from 'artyom.js'
 import axios from 'axios'
 import {geolocated} from 'react-geolocated'
-import {Row,Col, Preloader, Button, Table} from 'react-materialize'
+import {Row, Col, Preloader, Button, Table, Icon} from 'react-materialize'
 const Jarvis = new Artyom();
 
 class Mainpage extends React.Component {
@@ -126,7 +126,7 @@ class Mainpage extends React.Component {
                     </Row>
                     <Row>
                     {/* Voice commands action buttons */}
-                    <Button className="green" disabled={this.state.artyomActive} onClick={(e)=>{this.startAssistant()}}>Start Speech Detection</Button>
+                    <Button className="green" disabled={this.state.artyomActive} onClick={(e)=>{this.startAssistant()}}>Start Speech Detection<Icon left>settings_voice</Icon></Button>
                     {/* <Button className="red" disabled={!this.state.artyomActive} onClick={(e)=>{this.stopAssistant()}}>Stop Speech Detection</Button> */}
                     </Row>
                     <Row>
