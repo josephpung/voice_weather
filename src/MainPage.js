@@ -132,7 +132,7 @@ class Mainpage extends React.Component {
                     {/* <Button className="red" disabled={!this.state.artyomActive} onClick={(e)=>{this.stopAssistant()}}>Stop Speech Detection</Button> */}
                     </Row>
                     <Row>
-                      &copy; Joseph Pung (2017)
+                      &copy; Joseph Pung (2017) | Version 1.0.9
                     </Row>
                 </div>
             )
