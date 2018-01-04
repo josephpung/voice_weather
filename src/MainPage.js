@@ -2,7 +2,7 @@ import React from 'react'
 import Artyom from 'artyom.js'
 import axios from 'axios'
 import {geolocated} from 'react-geolocated'
-import {Row,Col, Preloader, Button, Icon} from 'react-materialize'
+import {Row,Col, Preloader, Button, Table} from 'react-materialize'
 const Jarvis = new Artyom();
 
 class Mainpage extends React.Component {
@@ -17,6 +17,7 @@ class Mainpage extends React.Component {
             artyomActive: false,
             textareaValue: "",
             artyomIsReading: false,
+            loadingData: false,
             country: "-",
             temperature: "-",
             weather: "-",
@@ -51,8 +52,6 @@ class Mainpage extends React.Component {
 
     startAssistant() {
         let _this = this;
-
-        console.log("Artyom succesfully started !");
 
         Jarvis.initialize({
             lang: "en-GB",
@@ -127,7 +126,8 @@ class Mainpage extends React.Component {
 
                     <br />
                     <br />
-                    <table>
+                    <Row>
+                    <Table>
                       <tbody>
                       <tr>
                         <th>Country</th>
@@ -142,7 +142,8 @@ class Mainpage extends React.Component {
                         <td>{this.state.clouds}%</td>
                       </tr>
                       </tbody>
-                    </table>
+                    </Table>
+                    </Row>
                 </div>
             )
           }else{
