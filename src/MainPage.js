@@ -1,36 +1,50 @@
-import React from 'react';
+import React from 'react'
+import Artyom from 'artyom.js'
+import axios from 'axios'
+import {geolocated} from 'react-geolocated'
 
-// Import the Artyom library
-import Artyom from 'artyom.js';
-
-// Import the previously created class to handle the commands from another file
-// import ArtyomCommandsManager from './ArtyomCommands.js';
-
-// Create a "globally" accesible instance of Artyom
 const Jarvis = new Artyom();
 
-export default class App extends React.Component {
+class Mainpage extends React.Component {
     constructor (props, context){
         super(props, context);
-
+        //
         // Add `this` context to the handler functions
-        this.startAssistant = this.startAssistant.bind(this);
-        this.stopAssistant = this.stopAssistant.bind(this);
-        this.speakText = this.speakText.bind(this);
-        this.handleTextareaChange = this.handleTextareaChange.bind(this);
+        this.startAssistant = this.startAssistant.bind(this)
+        this.stopAssistant = this.stopAssistant.bind(this)
+        this.speakText = this.speakText.bind(this)
 
         // Prepare simple state
         this.state = {
             artyomActive: false,
             textareaValue: "",
-            artyomIsReading: false
+            artyomIsReading: false,
+            country: "-",
+            temperature: "-",
+            weather: "-",
+            clouds: "-"
         };
 
         Jarvis.addCommands([
             {
-                indexes: ["What is the temperature"],
+                indexes: ["What is the weather like"],
                 action: () => {
-                    Jarvis.say("Hello, how are you?");
+                  axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${this.props.coords.latitude}&lon=${this.props.coords.longitude}&APPID=6feeacb3997e0e4f4a7f9e9c4b193934`)
+                .then(result=>{
+
+                  this.setState({
+                    country: result.data.sys.country,
+                    weather: result.data.weather[0].description,
+                    temperature: Math.floor(result.data.main.temp) - 273,
+                    clouds: result.data.clouds.all
+                  })
+
+                  let data = Math.floor(result.data.main.temp) - 273
+                  let weather = result.data.weather[0].description
+                  Jarvis.say(`Temperature is ${data} degrees celcius with ${weather}`);
+                })
+
+
                 }
 
               }
@@ -49,10 +63,8 @@ export default class App extends React.Component {
             soundex: true,
             listen: true
         }).then(() => {
-            // Display loaded commands in the console
-            console.log(Jarvis.getAvailableCommands());
 
-            Jarvis.say("Hello there, how are you?");
+            Jarvis.say("Jarvis has been initialized");
 
             _this.setState({
                 artyomActive: true
@@ -98,32 +110,52 @@ export default class App extends React.Component {
         });
     }
 
-    handleTextareaChange(event) {
-        this.setState({
-            textareaValue: event.target.value
-        });
-    }
-
     render() {
-        return (
-            <div>
-                <h1>Welcome to S.W.A (Simple Weather Assistant)</h1>
+      if (!this.props.isGeolocationAvailable)
+        return <div className="white-text">Your browser does not support Geolocation</div>
+        else if( !this.props.isGeolocationEnabled)
+          return <div className="white-text">Geolocation is not enabled</div>
+          else if( this.props.coords){
+            return(
 
-                <p>In this very basic assistant, please say "What is the temperature" to check the current temperature</p>
+                <div id="weather_assistant" className="white-text">
+                    <h1 >Welcome to S.W.A (Simple Weather Assistant)</h1>
 
-                {/* Voice commands action buttons */}
-                <input type="button" value="Start Artyom" disabled={this.state.artyomActive} onClick={this.startAssistant}/>
-                <input type="button" value="Stop Artyom" disabled={!this.state.artyomActive} onClick={this.stopAssistant}/>
+                    <p>Please press "Start speech detection" and say "What is the weather like" to check the current weather</p>
 
-                {/* Speech synthesis Area */}
+                    {/* Voice commands action buttons */}
+                    <input type="button" value="Start Speech Detection" disabled={this.state.artyomActive} onClick={this.startAssistant}/>
+                    <input type="button" value="Stop Speech Detection" disabled={!this.state.artyomActive} onClick={this.stopAssistant}/>
 
-                <p>I can read some text for you if you want:</p>
-
-                <textarea rows="5" onChange={this.handleTextareaChange} value={this.state.textareaValue}/>
-                <br/>
-                {/* Read the text inside the textarea with artyom */}
-                <input type="button" value="Read Text" disabled={this.state.artyomIsReading} onClick={this.speakText}/>
-            </div>
-        )
+                    <br />
+                    <br />
+                    <table>
+                      <tbody>
+                      <tr>
+                        <th>Country</th>
+                        <th>Temperature</th>
+                        <th>Weather</th>
+                        <th>Clouds</th>
+                      </tr>
+                      <tr>
+                        <td>{this.state.country}</td>
+                        <td>{this.state.temperature}&deg;C</td>
+                        <td>{this.state.weather}</td>
+                        <td>{this.state.clouds}%</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                </div>
+            )
+          }else{
+            return <div className="white-text">Getting the location data&hellip; </div>
+          }
     }
 }
+
+export default geolocated({
+  positionOptions: {
+    enableHighAccuracy: true,
+  },
+  userDecisionTimeout: 5000,
+})(Mainpage)
