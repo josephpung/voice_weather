@@ -96,8 +96,8 @@ class Mainpage extends React.Component {
                 <div id="weather_assistant" className="white-text">
                     <h1 >Welcome to S.W.A (Simple Weather Assistant)</h1>
 
-                    <p>Please press "Start speech detection" and say "What is the weather like" to check the current weather.
-                       continuous voice detection is enabled, you do not need to press stop after every test, only press it when you are done</p>
+                    <p>Please press <strong>"Start speech detection"</strong> and say "What is the weather like" to check the current weather.<br/>
+                       Continuous voice detection is enabled, you do not need to press stop after every test, only press it when you are done</p>
                     <p>Press "Stop speech detection" when you are done with voice testing</p>
 
                     {/* Voice commands action buttons */}
