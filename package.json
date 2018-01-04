@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "artyom.js": "^1.0.6",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-geolocated": "^2.2.1",
