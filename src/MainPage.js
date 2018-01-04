@@ -89,7 +89,8 @@ class Mainpage extends React.Component {
       if (!this.props.isGeolocationAvailable)
         return <div className="white-text">Your browser does not support Geolocation</div>
         else if( !this.props.isGeolocationEnabled)
-          return <div className="white-text vertical-align"><h3>Geolocation is not enabled, if page does not load in 5 seconds please refresh the page! If that does not help please check that you are using HTTPS, not HTTP</h3></div>
+          return <div className="white-text vertical-align"><h3>Geolocation is not enabled</h3>
+          <p> If you have enabled location tracking and the page does not load in 5 seconds please refresh the page! If that does not help please ensure that you are using HTTPS, not HTTP</p></div>
           else if( this.props.coords){
             return(
 
