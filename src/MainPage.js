@@ -15,6 +15,7 @@ class Mainpage extends React.Component {
             textareaValue: "",
             artyomIsReading: false,
             loadingData: false,
+            icon:"50d",
             country: "-",
             temperature: "-",
             weather: "-",
@@ -32,7 +33,8 @@ class Mainpage extends React.Component {
                     country: result.data.sys.country,
                     weather: result.data.weather[0].description,
                     temperature: Math.floor(result.data.main.temp) - 273,
-                    clouds: result.data.clouds.all
+                    clouds: result.data.clouds.all,
+                    icon: result.data.weather[0].icon
                   })
 
                   let data = Math.floor(result.data.main.temp) - 273
@@ -118,7 +120,7 @@ class Mainpage extends React.Component {
                       <tr>
                         <td>{this.state.country}</td>
                         <td>{this.state.temperature}&deg;C</td>
-                        <td>{this.state.weather}</td>
+                        <td>{this.state.weather} <img src={`http://openweathermap.org/img/w/${this.state.icon}.png`} alt=""/></td>
                         <td>{this.state.clouds}%</td>
                       </tr>
                       </tbody>
