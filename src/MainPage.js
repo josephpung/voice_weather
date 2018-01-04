@@ -28,7 +28,7 @@ class Mainpage extends React.Component {
             {
                 indexes: ["What is the weather like"],
                 action: () => {
-                  axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${this.props.coords.latitude}&lon=${this.props.coords.longitude}&APPID=6feeacb3997e0e4f4a7f9e9c4b193934`)
+                  axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.props.coords.latitude}&lon=${this.props.coords.longitude}&APPID=6feeacb3997e0e4f4a7f9e9c4b193934`)
                 .then(result=>{
 
                   this.setState({
