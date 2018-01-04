@@ -61,7 +61,7 @@ class Mainpage extends React.Component {
             listen: true
         }).then(() => {
 
-            Jarvis.say("Jarvis has been initialized");
+            Jarvis.say("A.W.S has been initialized");
 
             _this.setState({
                 artyomActive: true
@@ -75,7 +75,6 @@ class Mainpage extends React.Component {
         let _this = this;
 
         Jarvis.fatality().then(() => {
-            console.log("Jarvis has been succesfully stopped");
 
             _this.setState({
                 artyomActive: false
@@ -118,7 +117,9 @@ class Mainpage extends React.Component {
                 <div id="weather_assistant" className="white-text">
                     <h1 >Welcome to S.W.A (Simple Weather Assistant)</h1>
 
-                    <p>Please press "Start speech detection" and say "What is the weather like" to check the current weather</p>
+                    <p>Please press "Start speech detection" and say "What is the weather like" to check the current weather.
+                       continuous voice detection is enabled, you do not need to press stop after every test, only press it when you are done</p>
+                    <p>Press "Stop speech detection" when you are done with voice testing</p>
 
                     {/* Voice commands action buttons */}
                     <Button className="green" disabled={this.state.artyomActive} onClick={this.startAssistant}>Start Speech Detection</Button>
@@ -143,6 +144,9 @@ class Mainpage extends React.Component {
                       </tr>
                       </tbody>
                     </Table>
+                    </Row>
+                    <Row>
+                      &copy; Joseph Pung (2017)
                     </Row>
                 </div>
             )

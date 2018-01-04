@@ -3,12 +3,13 @@
 [Live Link](https://weatherappjo.herokuapp.com/)
 
 ## Description
- Simple app that allows users to check the current Weather
+Simple app that allows users to check the current Weather
 
 Installation instructions
 ```
 yarn install
 yarn start
+
 ```
 
 ## Dependencies
@@ -16,3 +17,5 @@ yarn start
 * React-Geolocator
 * React-materialize
 * Artyom.js (Voice Recog)
+
+&copy; Joseph Pung 2017
