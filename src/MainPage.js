@@ -2,19 +2,17 @@ import React from 'react'
 import Artyom from 'artyom.js'
 import axios from 'axios'
 import {geolocated} from 'react-geolocated'
-
+import {Row,Col, Preloader, Button, Icon} from 'react-materialize'
 const Jarvis = new Artyom();
 
 class Mainpage extends React.Component {
     constructor (props, context){
-        super(props, context);
-        //
-        // Add `this` context to the handler functions
+        super(props, context)
+
         this.startAssistant = this.startAssistant.bind(this)
         this.stopAssistant = this.stopAssistant.bind(this)
         this.speakText = this.speakText.bind(this)
 
-        // Prepare simple state
         this.state = {
             artyomActive: false,
             textareaValue: "",
@@ -124,8 +122,8 @@ class Mainpage extends React.Component {
                     <p>Please press "Start speech detection" and say "What is the weather like" to check the current weather</p>
 
                     {/* Voice commands action buttons */}
-                    <input type="button" value="Start Speech Detection" disabled={this.state.artyomActive} onClick={this.startAssistant}/>
-                    <input type="button" value="Stop Speech Detection" disabled={!this.state.artyomActive} onClick={this.stopAssistant}/>
+                    <Button className="green" disabled={this.state.artyomActive} onClick={this.startAssistant}>Start Speech Detection</Button>
+                    <Button className="red" disabled={!this.state.artyomActive} onClick={this.stopAssistant}>Stop Speech Detection</Button>
 
                     <br />
                     <br />
@@ -148,7 +146,17 @@ class Mainpage extends React.Component {
                 </div>
             )
           }else{
-            return <div className="white-text">Getting the location data&hellip; </div>
+            return (<div className="white-text">
+            <br />
+            <Row>
+              <Col s={12}>
+  		            <Preloader flashing/>
+  	           </Col>
+            </Row>
+            <Row>
+              <h3>Getting your location data, please wait!</h3>
+            </Row>
+                  </div>)
           }
     }
 }
