@@ -51,7 +51,7 @@ class Mainpage extends React.Component {
 
         Jarvis.initialize({
             lang: "en-GB",
-            debug: true,
+            debug: false, //turn on to see console logs and commands
             continuous: true,
             soundex: true,
             listen: true
