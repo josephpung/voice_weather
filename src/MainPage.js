@@ -57,7 +57,7 @@ class Mainpage extends React.Component {
             listen: true
         }).then(() => {
 
-            Jarvis.say("A.W.S has been initialized");
+            Jarvis.say("S.W.A has been initialized");
 
             this.setState({
                 artyomActive: true
@@ -95,14 +95,13 @@ class Mainpage extends React.Component {
 
                 <div id="weather_assistant" className="white-text">
                     <h1 >Welcome to S.W.A (Simple Weather Assistant)</h1>
+                    <br />
+                    <br />
+                    <br />
+                    <h2 className="grey-text">Instructions</h2>
+                    <p>Please press <strong>"Start speech detection"</strong> and say "What is the weather like" to check the current weather.</p>
 
-                    <p>Please press <strong>"Start speech detection"</strong> and say "What is the weather like" to check the current weather.<br/>
-                       Continuous voice detection is enabled, you do not need to press stop after every test, only press it when you are done</p>
-                    <p>Press "Stop speech detection" when you are done with voice testing</p>
 
-                    {/* Voice commands action buttons */}
-                    <Button className="green" disabled={this.state.artyomActive} onClick={(e)=>{this.startAssistant()}}>Start Speech Detection</Button>
-                    <Button className="red" disabled={!this.state.artyomActive} onClick={(e)=>{this.stopAssistant()}}>Stop Speech Detection</Button>
 
                     <br />
                     <br />
@@ -123,6 +122,11 @@ class Mainpage extends React.Component {
                       </tr>
                       </tbody>
                     </Table>
+                    </Row>
+                    <Row>
+                    {/* Voice commands action buttons */}
+                    <Button className="green" disabled={this.state.artyomActive} onClick={(e)=>{this.startAssistant()}}>Start Speech Detection</Button>
+                    {/* <Button className="red" disabled={!this.state.artyomActive} onClick={(e)=>{this.stopAssistant()}}>Stop Speech Detection</Button> */}
                     </Row>
                     <Row>
                       &copy; Joseph Pung (2017)
