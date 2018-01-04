@@ -120,7 +120,7 @@ class Mainpage extends React.Component {
                       <tr>
                         <td>{this.state.country}</td>
                         <td>{this.state.temperature}&deg;C</td>
-                        <td>{this.state.weather} <img src={`https://openweathermap.org/img/w/${this.state.icon}.png`} alt=""/></td>
+                        <td>{this.state.weather} <img src={`http://openweathermap.org/img/w/${this.state.icon}.png`} alt=""/></td>
                         <td>{this.state.clouds}%</td>
                       </tr>
                       </tbody>
