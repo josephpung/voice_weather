@@ -102,7 +102,7 @@ class Mainpage extends React.Component {
                     <br />
                     <br />
                     <h2 className="grey-text">Instructions</h2>
-                    <p>Please press <strong>"Start speech detection"</strong> and say "What is the weather like" to check the current weather.</p>
+                    {/* <p>Please press <strong>"Start speech detection"</strong> and say "What is the weather like" to check the current weather.</p> */}
 
 
 
