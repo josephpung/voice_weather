@@ -1,5 +1,18 @@
-## Gowild Voice Activated Weather App
+## Gowild Tech Assignment
 
+[Live Link](https://weatherappjo.herokuapp.com/)
 
-### Simple app that allows users to check the current Weather
-TBD
+## Description
+ Simple app that allows users to check the current Weather
+
+Installation instructions
+```
+yarn install
+yarn start
+```
+
+## Dependencies
+
+* React-Geolocator
+* React-materialize
+* Artyom.js (Voice Recog)
