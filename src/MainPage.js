@@ -9,9 +9,6 @@ class Mainpage extends React.Component {
     constructor (props, context){
         super(props, context)
 
-        this.startAssistant = this.startAssistant.bind(this)
-        this.stopAssistant = this.stopAssistant.bind(this)
-        this.speakText = this.speakText.bind(this)
 
         this.state = {
             artyomActive: false,
@@ -51,7 +48,6 @@ class Mainpage extends React.Component {
     }
 
     startAssistant() {
-        let _this = this;
 
         Jarvis.initialize({
             lang: "en-GB",
@@ -63,7 +59,7 @@ class Mainpage extends React.Component {
 
             Jarvis.say("A.W.S has been initialized");
 
-            _this.setState({
+            this.setState({
                 artyomActive: true
             });
         }).catch((err) => {
@@ -72,39 +68,22 @@ class Mainpage extends React.Component {
     }
 
     stopAssistant() {
-        let _this = this;
 
         Jarvis.fatality().then(() => {
 
-            _this.setState({
+            this.setState({
                 artyomActive: false
             });
 
         }).catch((err) => {
             console.error("Oopsy daisy, this shouldn't happen neither!", err);
 
-            _this.setState({
+            this.setState({
                 artyomActive: false
             });
         });
     }
 
-    speakText() {
-        let _this = this;
-
-        _this.setState({
-            artyomIsReading: true
-        });
-
-        // Speak text with Artyom
-        Jarvis.say( _this.state.textareaValue, {
-            onEnd() {
-                _this.setState({
-                    artyomIsReading: false
-                });
-            }
-        });
-    }
 
     render() {
       if (!this.props.isGeolocationAvailable)
@@ -122,8 +101,8 @@ class Mainpage extends React.Component {
                     <p>Press "Stop speech detection" when you are done with voice testing</p>
 
                     {/* Voice commands action buttons */}
-                    <Button className="green" disabled={this.state.artyomActive} onClick={this.startAssistant}>Start Speech Detection</Button>
-                    <Button className="red" disabled={!this.state.artyomActive} onClick={this.stopAssistant}>Stop Speech Detection</Button>
+                    <Button className="green" disabled={this.state.artyomActive} onClick={(e)=>{this.startAssistant()}}>Start Speech Detection</Button>
+                    <Button className="red" disabled={!this.state.artyomActive} onClick={(e)=>{this.stopAssistant()}}>Stop Speech Detection</Button>
 
                     <br />
                     <br />
