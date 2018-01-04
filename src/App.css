@@ -9,6 +9,9 @@ body{
   color: white;
 }
 
+.vertical-align{
+  padding-top: 300px;
+}
 /* table {
   margin: auto;
  } */

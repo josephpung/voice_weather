@@ -110,7 +110,7 @@ class Mainpage extends React.Component {
       if (!this.props.isGeolocationAvailable)
         return <div className="white-text">Your browser does not support Geolocation</div>
         else if( !this.props.isGeolocationEnabled)
-          return <div className="white-text">Geolocation is not enabled</div>
+          return <div className="white-text vertical-align">Geolocation is not enabled</div>
           else if( this.props.coords){
             return(
 
@@ -151,7 +151,7 @@ class Mainpage extends React.Component {
                 </div>
             )
           }else{
-            return (<div className="white-text">
+            return (<div className="white-text vertical-align">
             <br />
             <Row>
               <Col s={12}>
