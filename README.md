@@ -1,6 +1,6 @@
 ## Gowild Tech Assignment
 
-[Live Link](https://weatherappjo.herokuapp.com/)
+[Live Link](https://voiceweather.herokuapp.com/)
 
 ## Description
 Simple app that allows users to check the current Weather
